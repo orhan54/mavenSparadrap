@@ -1,4 +1,4 @@
-package fr.pompey.cda24060.test;
+package fr.pompey.cda24060;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +16,7 @@ class MedecinTest {
     @BeforeEach
     void setUp() throws SaisieException {
         // Création d'un lieu valide pour le médecin
+
         lieu = new Lieu(
                 "10 rue de Paris",
                 "testmedecin@example.com",
@@ -25,7 +26,7 @@ class MedecinTest {
         );
 
         // Création d'un médecin valide
-        medecin = new Medecin("Dupont", "Jean", "1234567890", lieu);
+        medecin = new Medecin("Dupont", "Jean", "12345678901", lieu);
     }
 
     @Test
@@ -36,13 +37,13 @@ class MedecinTest {
 
     @Test
     void testGetNumeroAgreement() {
-        assertEquals("12345", medecin.getNumeroAgreement());
+        assertEquals("12345678901", medecin.getNumeroAgreement());
     }
 
     @Test
     void testSetNumeroAgreement() throws SaisieException {
-        medecin.setNumeroAgreement("67890");
-        assertEquals("67890", medecin.getNumeroAgreement());
+        medecin.setNumeroAgreement("12345678901");
+        assertEquals("12345678901", medecin.getNumeroAgreement());
     }
 
     @Test

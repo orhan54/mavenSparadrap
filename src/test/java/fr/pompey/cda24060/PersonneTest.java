@@ -1,4 +1,4 @@
-package fr.pompey.cda24060.test;
+package fr.pompey.cda24060;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +22,7 @@ class PersonneTest {
         lieu = new Lieu(
                 "10 rue de Paris",
                 "test@example.com",
-                "0123456789",
+                "+33123456789",
                 "Paris",
                 75001
         );
@@ -72,7 +72,7 @@ class PersonneTest {
         Lieu nouveauLieu = new Lieu(
                 "20 avenue Lyon",
                 "lyon@example.com",
-                "0987654321",
+                "+33987654321",
                 "Lyon",
                 69001
         );
@@ -88,7 +88,7 @@ class PersonneTest {
     @Test
     void testSetMutuelle() throws SaisieException {
         Mutuelle nouvelleMutuelle = new Mutuelle(
-                "Mutuelle2",
+                "MutuelleTest",
                 50.0,
                 69,
                 lieu
