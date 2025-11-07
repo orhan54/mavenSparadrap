@@ -16,7 +16,7 @@ public class Ordonnance {
     private String date, nomMedecin, nomPatient;
 
     // Liste des médicaments pour cette ordonnance
-    private List<Medicament> medicaments;
+    private List<Stock_Medicament> medicaments;
 
     // Liste statique de toutes les ordonnances
     private static List<Ordonnance> ordonnances = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Ordonnance {
      * @param medicaments la liste des médicaments
      * @throws SaisieException exception de saisie
      */
-    public Ordonnance(String date, String pNomMedecin, String pNomPatient, List<Medicament> medicaments) throws SaisieException {
+    public Ordonnance(String date, String pNomMedecin, String pNomPatient, List<Stock_Medicament> medicaments) throws SaisieException {
         this.setDate(date);
 //        this.dateOrdonnance = LocalDateTime.now();  // *** mise en commentaire pour tester les differentes dates de initialisation ***
         this.setNomMedecin(pNomMedecin);
@@ -52,7 +52,7 @@ public class Ordonnance {
      *
      * @return une copie de la liste des médicaments
      */
-    public List<Medicament> getMedicaments() {
+    public List<Stock_Medicament> getMedicaments() {
         return new ArrayList<>(this.medicaments);
     }
 

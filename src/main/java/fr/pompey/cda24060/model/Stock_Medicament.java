@@ -1,21 +1,21 @@
 package fr.pompey.cda24060.model;
 
+import com.google.protobuf.StringValue;
 import fr.pompey.cda24060.exception.SaisieException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 import static fr.pompey.cda24060.utility.RegexUtility.*;
 
-public class Medicament {
+public class Stock_Medicament {
     // Attibut pour la classe Medicament
     private int quantite;
-    private String dateMiseEnService, categorie, nom;
+    private String dateMiseEnService, nom, categorie, dateEntreeStock;
     private double prix;
 
     // List des medicaments 
-    private static List<Medicament> medicaments = new ArrayList<Medicament>();
+    private static List<Stock_Medicament> medicaments = new ArrayList<Stock_Medicament>();
 
     /**
      * Instantiates a new Medicament.
@@ -25,15 +25,17 @@ public class Medicament {
      * @param pPrix              the prix
      * @param pCategorie         the categorie
      * @param pNom               the nom
+     * @param pDateEntreeStock   the p date entree stock
      * @throws SaisieException the saisie exception
      */
-// Constucteur de la classe Medicament
-    public Medicament(int pQuantite, String pDateMiseEnService, double pPrix, String pCategorie, String pNom) throws SaisieException {
+    // Constucteur de la classe Medicament
+    public Stock_Medicament(int pQuantite, String pDateMiseEnService, double pPrix, String pCategorie, String pNom, String pDateEntreeStock) throws SaisieException {
         this.setQuantite(pQuantite);
         this.setDateMiseEnService(pDateMiseEnService);
         this.setPrix(pPrix);
         this.setCategorie(pCategorie);
         this.setNom(pNom);
+        this.setDateEntreeStock(pDateEntreeStock);
     }
 
     // Getters et Setters
@@ -44,7 +46,7 @@ public class Medicament {
      * @return the medicaments
      */
     // Afficher la list des medicaments
-    public static List<Medicament> getMedicaments() {
+    public static List<Stock_Medicament> getMedicaments() {
         return medicaments;
     }
 
@@ -163,6 +165,18 @@ public class Medicament {
         }
     }
 
+    public String getDateEntreeStock() {
+        return this.dateEntreeStock;
+    }
+
+    public void setDateEntreeStock(String pDateEntreeStock) throws SaisieException {
+        if(!dateValide(String.valueOf(pDateEntreeStock))){
+            throw new SaisieException("Error sur la date de mise en service : " + pDateEntreeStock);
+        }else{
+            this.dateEntreeStock = pDateEntreeStock;
+        }
+    }
+
     // StringBiulder dans mon toString de la classe Medicament
     public String toString() {
         StringBuilder m = new StringBuilder();
@@ -171,6 +185,7 @@ public class Medicament {
         m.append("- Prix : ").append(this.prix).append("\n");
         m.append("- Categorie : ").append(this.categorie).append("\n");
         m.append("- Nom : ").append(this.nom).append("\n");
+        m.append("- Date entree stock : ").append(this.dateEntreeStock).append("\n");
         m.append("\n");
 
         return m.toString();

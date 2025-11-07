@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class consulterMedecin extends JFrame {
@@ -46,7 +47,7 @@ public class consulterMedecin extends JFrame {
     public consulterMedecin(JFrame previousFrame) {
         this.previousFrame = previousFrame;
 
-        ImageIcon imageIcon = new ImageIcon("C:\\Users\\User\\Desktop\\ECF-CPP1_CICEK_Orhan\\ECF-CPP-1\\sparadrap\\src\\sparadrap\\afpa\\image\\miniLogo.png");
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/miniLogo.png")));
         Dimension dimension = new Dimension(1600, 1000);
 
         // Attributs JFrame

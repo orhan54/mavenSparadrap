@@ -19,7 +19,7 @@ public class Commande {
     private Date dateCommande;
     private TypeAchat typeAchat;
     private String nomMedecin, nomPatient;
-    private List<Medicament> medicaments;
+    private List<Stock_Medicament> medicaments;
     private int quantite;
     private double prix;
     private Mutuelle mutuelle;
@@ -46,7 +46,7 @@ public class Commande {
                     TypeAchat pTypeAchat,
                     String nomMedecin,
                     String nomPatient,
-                    List<Medicament> medicaments,
+                    List<Stock_Medicament> medicaments,
                     int quantite,
                     double prix,
                     Mutuelle mutuelle,
@@ -84,7 +84,7 @@ public class Commande {
                     TypeAchat pTypeAchat,
                     String nomMedecin,
                     String nomPatient,
-                    Medicament medicament,
+                    Stock_Medicament medicament,
                     int quantite,
                     double prix,
                     Mutuelle mutuelle,
@@ -120,7 +120,7 @@ public class Commande {
                     TypeAchat pTypeAchat,
                     String nomMedecin,
                     String nomPatient,
-                    List<Medicament> medicaments,
+                    List<Stock_Medicament> medicaments,
                     int quantite,
                     double prix) throws SaisieException {
         this(pDateCommande, pTypeAchat, nomMedecin, nomPatient, medicaments, quantite, prix, null, false);
@@ -142,7 +142,7 @@ public class Commande {
                     TypeAchat pTypeAchat,
                     String nomMedecin,
                     String nomPatient,
-                    Medicament medicament,
+                    Stock_Medicament medicament,
                     int quantite,
                     double prix) throws SaisieException {
         this(pDateCommande, pTypeAchat, nomMedecin, nomPatient, medicament, quantite, prix, null, false);
@@ -166,7 +166,7 @@ public class Commande {
                     TypeAchat pTypeAchat,
                     String nomMedecin,
                     String nomPatient,
-                    List<Medicament> medicaments,
+                    List<Stock_Medicament> medicaments,
                     int quantite,
                     double prix,
                     boolean priseEnChargeMutuelle) throws SaisieException {
@@ -246,14 +246,14 @@ public class Commande {
      *
      * @return the medicaments
      */
-    public List<Medicament> getMedicaments() { return new ArrayList<>(this.medicaments); }
+    public List<Stock_Medicament> getMedicaments() { return new ArrayList<>(this.medicaments); }
 
     /**
      * Sets medicaments.
      *
      * @param medicaments the medicaments
      */
-    public void setMedicaments(List<Medicament> medicaments) {
+    public void setMedicaments(List<Stock_Medicament> medicaments) {
         this.medicaments = new ArrayList<>();
         if (medicaments != null && !medicaments.isEmpty()) this.medicaments.addAll(medicaments);
     }
@@ -263,7 +263,7 @@ public class Commande {
      *
      * @param medicament the medicament
      */
-    public void ajouterMedicament(Medicament medicament) {
+    public void ajouterMedicament(Stock_Medicament medicament) {
         if (medicament != null) this.medicaments.add(medicament);
     }
 
@@ -312,7 +312,7 @@ public class Commande {
      */
     public double getPrixTotal() {
         double total = 0.0;
-        for (Medicament med : medicaments) total += med.getPrix() * med.getQuantite();
+        for (Stock_Medicament med : medicaments) total += med.getPrix() * med.getQuantite();
         return total;
     }
 

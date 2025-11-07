@@ -1,6 +1,6 @@
 package fr.pompey.cda24060.swingUI;
 
-import fr.pompey.cda24060.model.Medicament;
+import fr.pompey.cda24060.model.Stock_Medicament;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +39,7 @@ public class addMedic extends JFrame {
         this.setResizable(false);
         this.setContentPane(contentPane);
 
-        String[] colonnes = {"Nom médicament", "Catégorie médicament", "Prix médicament", "Date mise en service", "Quantité médicament"};
+        String[] colonnes = {"Nom médicament", "Catégorie médicament", "Prix médicament", "Date mise en service", "Quantité médicament", "Date enregistrement stock"};
         tableModel = new DefaultTableModel(colonnes, 0);
         tableDetailsMedic.setModel(tableModel);
 
@@ -75,7 +75,7 @@ public class addMedic extends JFrame {
         comboBoxDetailsMedic.addItem("Voir le détails d'un médicament");
         comboBoxDetailsMedic.setSelectedIndex(0);
 
-        for(Medicament medicament : Medicament.getMedicaments()) {
+        for(Stock_Medicament medicament : Stock_Medicament.getMedicaments()) {
             comboBoxDetailsMedic.addItem(medicament.getNom());
         }
 
@@ -89,14 +89,15 @@ public class addMedic extends JFrame {
                 if(selected.equals(comboBoxDetailsMedic.getSelectedItem())) {
                     tableModel.setRowCount(0);
 
-                    for(Medicament m : Medicament.getMedicaments()) {
+                    for(Stock_Medicament m : Stock_Medicament.getMedicaments()) {
                         if(m.getNom().equals(comboBoxDetailsMedic.getSelectedItem())) {
                             tableModel.addRow(new Object[] {
                                     m.getNom(),
                                     m.getCategorie(),
                                     m.getPrix() + "€",
                                     m.getDateMiseEnService(),
-                                    m.getQuantite()
+                                    m.getQuantite(),
+                                    m.getDateEntreeStock()
                             });
                         }
                     }

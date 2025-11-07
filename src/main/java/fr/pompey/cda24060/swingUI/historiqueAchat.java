@@ -1,7 +1,7 @@
 package fr.pompey.cda24060.swingUI;
 
 import fr.pompey.cda24060.model.Commande;
-import fr.pompey.cda24060.model.Medicament;
+import fr.pompey.cda24060.model.Stock_Medicament;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -123,7 +123,7 @@ public class historiqueAchat extends JFrame {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < commande.getMedicaments().size(); i++) {
-            Medicament med = commande.getMedicaments().get(i);
+            Stock_Medicament med = commande.getMedicaments().get(i);
             if (i > 0) sb.append(", ");
             sb.append(med.getNom());
         }
@@ -245,7 +245,7 @@ public class historiqueAchat extends JFrame {
         DefaultTableModel modelMed = new DefaultTableModel(colonnes, 0);
 
         if (commande.getMedicaments() != null && !commande.getMedicaments().isEmpty()) {
-            for (Medicament med : commande.getMedicaments()) {
+            for (Stock_Medicament med : commande.getMedicaments()) {
                 modelMed.addRow(new Object[]{med.getNom(), med.getQuantite()});
             }
         } else {

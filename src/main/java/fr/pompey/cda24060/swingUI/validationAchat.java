@@ -39,7 +39,7 @@ public class validationAchat extends JFrame {
     private DefaultTableModel tableModelCommande;
     private DefaultTableModel tableModelMedicDispo;
 
-    private List<Medicament> medicamentsCommande = new ArrayList<>();
+    private List<Stock_Medicament> medicamentsCommande = new ArrayList<>();
     private List<Integer> quantitesMedicaments = new ArrayList<>();
 
     public validationAchat(String typeAchat, JFrame previousFrame) {
@@ -198,7 +198,7 @@ public class validationAchat extends JFrame {
 
     private void remplirComboBoxMedicament() {
         comboBoxMedicament.removeAllItems();
-        for (Medicament medicament : Medicament.getMedicaments()) {
+        for (Stock_Medicament medicament : Stock_Medicament.getMedicaments()) {
             comboBoxMedicament.addItem(medicament.getNom());
         }
     }
@@ -214,8 +214,8 @@ public class validationAchat extends JFrame {
             return;
         }
 
-        Medicament medicamentTrouve = null;
-        for (Medicament medicament : Medicament.getMedicaments()) {
+        Stock_Medicament medicamentTrouve = null;
+        for (Stock_Medicament medicament : Stock_Medicament.getMedicaments()) {
             if (medicament.getNom().equalsIgnoreCase(nomMedic)) {
                 medicamentTrouve = medicament;
                 break;
@@ -240,12 +240,13 @@ public class validationAchat extends JFrame {
         // Si pas déjà présent, ajouter le médicament
         if (!dejaPresent) {
             // Créer une référence au médicament original (sans quantité dedans)
-            Medicament medicamentCommande = new Medicament(
+            Stock_Medicament medicamentCommande = new Stock_Medicament(
                     0,
                     medicamentTrouve.getDateMiseEnService(),
                     medicamentTrouve.getPrix(),
                     medicamentTrouve.getCategorie(),
-                    medicamentTrouve.getNom()
+                    medicamentTrouve.getNom(),
+                    medicamentTrouve.getDateEntreeStock()
             );
             medicamentsCommande.add(medicamentCommande);
             quantitesMedicaments.add(quantite);
@@ -262,7 +263,7 @@ public class validationAchat extends JFrame {
     private void rafraichirTableauPanier() {
         tableModelCommande.setRowCount(0);
         for (int i = 0; i < medicamentsCommande.size(); i++) {
-            Medicament med = medicamentsCommande.get(i);
+            Stock_Medicament med = medicamentsCommande.get(i);
             int qty = quantitesMedicaments.get(i);
             double prixTotal = med.getPrix() * qty;
             tableModelCommande.addRow(new Object[]{
@@ -276,10 +277,10 @@ public class validationAchat extends JFrame {
 
     private void afficherListeMedicDispo() {
         tableModelMedicDispo.setRowCount(0);
-        if (Medicament.getMedicaments().isEmpty()) {
+        if (Stock_Medicament.getMedicaments().isEmpty()) {
             tableModelMedicDispo.addRow(new Object[]{"-", "Aucun medicament", "", "", ""});
         } else {
-            for (Medicament medicaments : Medicament.getMedicaments()) {
+            for (Stock_Medicament medicaments : Stock_Medicament.getMedicaments()) {
                 tableModelMedicDispo.addRow(new Object[]{
                         medicaments.getQuantite(),
                         medicaments.getDateMiseEnService(),
@@ -340,18 +341,19 @@ public class validationAchat extends JFrame {
             priseEnCharge = true;
         }
 
-        List<Medicament> medicamentsAvecQuantites = new ArrayList<>();
+        List<Stock_Medicament> medicamentsAvecQuantites = new ArrayList<>();
         for (int i = 0; i < medicamentsCommande.size(); i++) {
-            Medicament medOriginal = medicamentsCommande.get(i);
+            Stock_Medicament medOriginal = medicamentsCommande.get(i);
             int quantite = quantitesMedicaments.get(i);
 
             // Créer un nouveau médicament avec la bonne quantité
-            Medicament medAvecQte = new Medicament(
+            Stock_Medicament medAvecQte = new Stock_Medicament(
                     quantite,  // ← La vraie quantité
                     medOriginal.getDateMiseEnService(),
                     medOriginal.getPrix(),
                     medOriginal.getCategorie(),
-                    medOriginal.getNom()
+                    medOriginal.getNom(),
+                    medOriginal.getDateEntreeStock()
             );
             medicamentsAvecQuantites.add(medAvecQte);
         }

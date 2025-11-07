@@ -361,7 +361,7 @@
                             </constraints>
                             <properties>
                               <font name="Arial Black" size="12"/>
-                              <text value="Consulter ordonnance"/>
+                              <text value="Voir medicament"/>
                             </properties>
                           </component>
                         </children>

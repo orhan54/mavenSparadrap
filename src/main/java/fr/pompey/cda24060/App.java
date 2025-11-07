@@ -36,82 +36,82 @@ public class App {
             Lieu lieu7 = new Lieu("3 rue Sainte Catherine", "mutuelleeurope@gmail.com", "+33556874532", "Strasbourg", 67000);
 
             // Création des medicaments
-            Medicament medic1 = new Medicament(5, "10-05-2025", 10.50, "Cardiotoniques", "Digoxine");
-            Medicament medic2 = new Medicament(2, "02-09-2025", 5.99, "Bêta-bloquants", "Bisoprolol");
-            Medicament medic3 = new Medicament(6, "28-05-2025", 9.99, "Diurétiques", "Mannitol");
-            Medicament medic4 = new Medicament(2, "22-01-2025", 25.99, "Hypnotiques", "Méthaqualone");
-            Medicament medic5 = new Medicament(4, "02-03-2025", 15.99, "Triptans", "Élétriptan");
+            Stock_Medicament medic1 = new Stock_Medicament(5, "10-05-2025", 10.50, "Cardiotoniques", "Digoxine", "13-02-2025");
+            Stock_Medicament medic2 = new Stock_Medicament(2, "02-09-2025", 5.99, "Bêta-bloquants", "Bisoprolol", "06-09-2025");
+            Stock_Medicament medic3 = new Stock_Medicament(6, "28-05-2025", 9.99, "Diurétiques", "Mannitol", "02-06-2025");
+            Stock_Medicament medic4 = new Stock_Medicament(2, "22-01-2025", 25.99, "Hypnotiques", "Méthaqualone", "28-01-2025");
+            Stock_Medicament medic5 = new Stock_Medicament(4, "02-03-2025", 15.99, "Triptans", "Élétriptan", "07-03-2025");
 
             // Médicaments supplémentaires pour les commandes
-            Medicament medic6 = new Medicament(10, "15-04-2025", 8.50, "Antibiotiques", "Amoxicilline");
+            Stock_Medicament medic6 = new Stock_Medicament(10, "15-04-2025", 8.50, "Antibiotiques", "Amoxicilline", "18-04-2025");
 
             // === Création de plusieurs ordonnances par médecin ===
             // Dr Martin (3 ordonnances)
-            List<Medicament> ordoM1a = new ArrayList<>();
+            List<Stock_Medicament> ordoM1a = new ArrayList<>();
             ordoM1a.add(medic1); // Digoxine
             ordoM1a.add(medic2); // Bisoprolol
             Ordonnance ordoM1_1 = new Ordonnance("12/05/2025", "Dr Martin Paul", "Jean Dupont", ordoM1a);
 
-            List<Medicament> ordoM1b = new ArrayList<>();
+            List<Stock_Medicament> ordoM1b = new ArrayList<>();
             ordoM1b.add(medic3); // Mannitol
             Ordonnance ordoM1_2 = new Ordonnance("18/06/2025", "Dr Martin Paul", "Claire Martin", ordoM1b);
 
-            List<Medicament> ordoM1c = new ArrayList<>();
+            List<Stock_Medicament> ordoM1c = new ArrayList<>();
             ordoM1c.add(medic5); // Élétriptan
             ordoM1c.add(medic6); // Amoxicilline
             Ordonnance ordoM1_3 = new Ordonnance("02/07/2025", "Dr Martin Paul", "Paul Durand", ordoM1c);
 
 
             // Dr Robert (4 ordonnances)
-            List<Medicament> ordoM2a = new ArrayList<>();
+            List<Stock_Medicament> ordoM2a = new ArrayList<>();
             ordoM2a.add(medic3); // Mannitol
             Ordonnance ordoM2_1 = new Ordonnance("20/06/2025", "Dr Robert François", "Claire Martin", ordoM2a);
 
-            List<Medicament> ordoM2b = new ArrayList<>();
+            List<Stock_Medicament> ordoM2b = new ArrayList<>();
             ordoM2b.add(medic4); // Méthaqualone
             ordoM2b.add(medic2); // Bisoprolol
             Ordonnance ordoM2_2 = new Ordonnance("25/07/2025", "Dr Robert François", "Lucas Bernard", ordoM2b);
 
-            List<Medicament> ordoM2c = new ArrayList<>();
+            List<Stock_Medicament> ordoM2c = new ArrayList<>();
             ordoM2c.add(medic1);
             ordoM2c.add(medic5);
             ordoM2c.add(medic6);
             Ordonnance ordoM2_3 = new Ordonnance("01/08/2025", "Dr Robert François", "Jean Dupont", ordoM2c);
 
-            List<Medicament> ordoM2d = new ArrayList<>();
+            List<Stock_Medicament> ordoM2d = new ArrayList<>();
             ordoM2d.add(medic2);
             Ordonnance ordoM2_4 = new Ordonnance("10/08/2025", "Dr Robert François", "Paul Durand", ordoM2d);
 
 
             // Dr Dubois (3 ordonnances)
-            List<Medicament> ordoM3a = new ArrayList<>();
+            List<Stock_Medicament> ordoM3a = new ArrayList<>();
             ordoM3a.add(medic1);
             ordoM3a.add(medic4);
             ordoM3a.add(medic5);
             Ordonnance ordoM3_1 = new Ordonnance("28/07/2025", "Dr Dubois Anne", "Paul Durand", ordoM3a);
 
-            List<Medicament> ordoM3b = new ArrayList<>();
+            List<Stock_Medicament> ordoM3b = new ArrayList<>();
             ordoM3b.add(medic6);
             ordoM3b.add(medic3);
             Ordonnance ordoM3_2 = new Ordonnance("05/08/2025", "Dr Dubois Anne", "Sophie Petit", ordoM3b);
 
-            List<Medicament> ordoM3c = new ArrayList<>();
+            List<Stock_Medicament> ordoM3c = new ArrayList<>();
             ordoM3c.add(medic2);
             ordoM3c.add(medic5);
             Ordonnance ordoM3_3 = new Ordonnance("18/08/2025", "Dr Dubois Anne", "Lucas Bernard", ordoM3c);
 
 
             // Dr Morel (3 ordonnances)
-            List<Medicament> ordoM4a = new ArrayList<>();
+            List<Stock_Medicament> ordoM4a = new ArrayList<>();
             ordoM4a.add(medic2);
             ordoM4a.add(medic3);
             Ordonnance ordoM4_1 = new Ordonnance("29/07/2025", "Dr Morel Hélène", "Sophie Petit", ordoM4a);
 
-            List<Medicament> ordoM4b = new ArrayList<>();
+            List<Stock_Medicament> ordoM4b = new ArrayList<>();
             ordoM4b.add(medic4);
             Ordonnance ordoM4_2 = new Ordonnance("03/08/2025", "Dr Morel Hélène", "Jean Dupont", ordoM4b);
 
-            List<Medicament> ordoM4c = new ArrayList<>();
+            List<Stock_Medicament> ordoM4c = new ArrayList<>();
             ordoM4c.add(medic1);
             ordoM4c.add(medic5);
             ordoM4c.add(medic6);
@@ -119,16 +119,16 @@ public class App {
 
 
             // Dr Lefevre (3 ordonnances)
-            List<Medicament> ordoM5a = new ArrayList<>();
+            List<Stock_Medicament> ordoM5a = new ArrayList<>();
             ordoM5a.add(medic5);
             Ordonnance ordoM5_1 = new Ordonnance("05/08/2025", "Dr Lefevre Julien", "Lucas Bernard", ordoM5a);
 
-            List<Medicament> ordoM5b = new ArrayList<>();
+            List<Stock_Medicament> ordoM5b = new ArrayList<>();
             ordoM5b.add(medic2);
             ordoM5b.add(medic3);
             Ordonnance ordoM5_2 = new Ordonnance("12/08/2025", "Dr Lefevre Julien", "Paul Durand", ordoM5b);
 
-            List<Medicament> ordoM5c = new ArrayList<>();
+            List<Stock_Medicament> ordoM5c = new ArrayList<>();
             ordoM5c.add(medic1);
             ordoM5c.add(medic6);
             Ordonnance ordoM5_3 = new Ordonnance("22/08/2025", "Dr Lefevre Julien", "Sophie Petit", ordoM5c);
@@ -156,7 +156,7 @@ public class App {
 
             // Création des commandes avec dates différentes
             // Commande 1 - Achat direct (pas de mutuelle)
-            List<Medicament> medicamentsCmd1 = new ArrayList<>();
+            List<Stock_Medicament> medicamentsCmd1 = new ArrayList<>();
             medicamentsCmd1.add(medic1); // Digoxine
             Commande cmd1 = new Commande(Date.valueOf("2025-05-12"),
                     Commande.TypeAchat.DIRECT,
@@ -168,7 +168,7 @@ public class App {
             );
 
             // Commande 2 - Ordonnance avec mutuelle
-            List<Medicament> medicamentsCmd2 = new ArrayList<>();
+            List<Stock_Medicament> medicamentsCmd2 = new ArrayList<>();
             medicamentsCmd2.add(medic6); // Amoxicilline
             Commande cmd2 = new Commande(Date.valueOf("2025-06-15"),
                     Commande.TypeAchat.ORDONNANCE,
@@ -181,7 +181,7 @@ public class App {
             );
 
             // Commande 3 - Achat direct (pas de mutuelle)
-            List<Medicament> medicamentsCmd3 = new ArrayList<>();
+            List<Stock_Medicament> medicamentsCmd3 = new ArrayList<>();
             medicamentsCmd3.add(medic3); // Mannitol
             medicamentsCmd3.add(medic2); // Bisoprolol
             Commande cmd3 = new Commande(Date.valueOf("2025-07-01"),
@@ -204,7 +204,7 @@ public class App {
             );
 
             // Commande 5 - Ordonnance avec mutuelle
-            List<Medicament> medicamentsCmd5 = new ArrayList<>();
+            List<Stock_Medicament> medicamentsCmd5 = new ArrayList<>();
             medicamentsCmd5.add(medic5); // Élétriptan
             medicamentsCmd5.add(medic1); // Digoxine
             Commande cmd5 = new Commande(Date.valueOf("2025-08-05"),
@@ -243,12 +243,12 @@ public class App {
 
             // Ajout dans la liste des medicaments
             System.out.println("=== MEDICAMENTS CRÉÉES ===");
-            Medicament.getMedicaments().add(medic1);
-            Medicament.getMedicaments().add(medic2);
-            Medicament.getMedicaments().add(medic3);
-            Medicament.getMedicaments().add(medic4);
-            Medicament.getMedicaments().add(medic5);
-            Medicament.getMedicaments().add(medic6);
+            Stock_Medicament.getMedicaments().add(medic1);
+            Stock_Medicament.getMedicaments().add(medic2);
+            Stock_Medicament.getMedicaments().add(medic3);
+            Stock_Medicament.getMedicaments().add(medic4);
+            Stock_Medicament.getMedicaments().add(medic5);
+            Stock_Medicament.getMedicaments().add(medic6);
 
             // Ajout des commandes
             System.out.println("=== COMMANDES CRÉÉES ===");
@@ -273,7 +273,7 @@ public class App {
             System.out.println(cmd4);
             System.out.println(cmd5);
 
-            System.out.println("Medicaments disponibles : " + "\n" + Medicament.getMedicaments());
+            System.out.println("Medicaments disponibles : " + "\n" + Stock_Medicament.getMedicaments());
 
             // Affichage des ordonnances créées
             System.out.println("=== ORDONNANCES CRÉÉES ===");
