@@ -1,7 +1,6 @@
 package fr.pompey.cda24060.swingUI;
 
 import fr.pompey.cda24060.model.*;
-
 import javax.swing.*;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.sql.Date;
@@ -32,14 +31,14 @@ public class MainSwingUI {
             Lieu lieu7 = new Lieu("3 rue Sainte Catherine", "mutuelleeurope@gmail.com", "+33556874532", "Strasbourg", 67000);
 
             // Création des medicaments
-            Stock_Medicament medic1 = new Stock_Medicament(5, "10-05-2025", 10.50, "Cardiotoniques", "Digoxine", "13-02-2025");
-            Stock_Medicament medic2 = new Stock_Medicament(2, "02-09-2025", 5.99, "Bêta-bloquants", "Bisoprolol", "06-09-2025");
-            Stock_Medicament medic3 = new Stock_Medicament(6, "28-05-2025", 9.99, "Diurétiques", "Mannitol", "02-06-2025");
-            Stock_Medicament medic4 = new Stock_Medicament(2, "22-01-2025", 25.99, "Hypnotiques", "Méthaqualone", "28-01-2025");
-            Stock_Medicament medic5 = new Stock_Medicament(4, "02-03-2025", 15.99, "Triptans", "Élétriptan", "07-03-2025");
+            Stock_Medicament medic1 = new Stock_Medicament(120, "10-05-2025", 10.50, "Cardiotoniques", "Digoxine", "13-02-2025");
+            Stock_Medicament medic2 = new Stock_Medicament(57, "02-09-2025", 5.99, "Bêta-bloquants", "Bisoprolol", "06-09-2025");
+            Stock_Medicament medic3 = new Stock_Medicament(98, "28-05-2025", 9.99, "Diurétiques", "Mannitol", "02-06-2025");
+            Stock_Medicament medic4 = new Stock_Medicament(75, "22-01-2025", 25.99, "Hypnotiques", "Méthaqualone", "28-01-2025");
+            Stock_Medicament medic5 = new Stock_Medicament(42, "02-03-2025", 15.99, "Triptans", "Élétriptan", "07-03-2025");
 
             // Médicaments supplémentaires pour les commandes
-            Stock_Medicament medic6 = new Stock_Medicament(10, "15-04-2025", 8.50, "Antibiotiques", "Amoxicilline", "18-04-2025");
+            Stock_Medicament medic6 = new Stock_Medicament(103, "15-04-2025", 8.50, "Antibiotiques", "Amoxicilline", "18-04-2025");
 
             // === Création de plusieurs ordonnances par médecin ===
             // Dr Martin (3 ordonnances)
@@ -78,7 +77,6 @@ public class MainSwingUI {
             ordoM2d.add(medic2);
             Ordonnance ordoM2_4 = new Ordonnance("10/08/2025", "Dr Robert François", "Paul Durand", ordoM2d);
 
-
             // Dr Dubois (3 ordonnances)
             List<Stock_Medicament> ordoM3a = new ArrayList<>();
             ordoM3a.add(medic1);
@@ -95,7 +93,6 @@ public class MainSwingUI {
             ordoM3c.add(medic2);
             ordoM3c.add(medic5);
             Ordonnance ordoM3_3 = new Ordonnance("18/08/2025", "Dr Dubois Anne", "Lucas Bernard", ordoM3c);
-
 
             // Dr Morel (3 ordonnances)
             List<Stock_Medicament> ordoM4a = new ArrayList<>();
