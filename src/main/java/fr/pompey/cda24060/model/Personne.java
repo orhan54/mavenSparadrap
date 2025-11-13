@@ -8,8 +8,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
  * The type Personne.
  */
 public class Personne {
-    private String nom;
-    private String prenom;
+    private String nom, prenom;
     private Lieu lieu; // composition : une personne a un lieu
     private Mutuelle mutuelle;
     private Medecin medecin;
@@ -46,6 +45,13 @@ public class Personne {
         this.setPrenom(pPrenom);
         this.setLieu(lieu);
     }
+
+    /**
+     * Instantiates a new Personne.
+     *
+     * @throws SaisieException the saisie exception
+     */
+    public Personne() throws SaisieException {}
 
     // Getters & Setters
 

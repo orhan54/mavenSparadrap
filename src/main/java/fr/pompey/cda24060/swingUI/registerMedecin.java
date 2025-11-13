@@ -2,9 +2,12 @@ package fr.pompey.cda24060.swingUI;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import fr.pompey.cda24060.BDD.implementation.LieuDAO;
+import fr.pompey.cda24060.BDD.implementation.MedecinDAO;
 import fr.pompey.cda24060.exception.SaisieException;
 import fr.pompey.cda24060.model.Lieu;
 import fr.pompey.cda24060.model.Medecin;
+import fr.pompey.cda24060.utility.RegexUtility;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -129,53 +132,88 @@ public class registerMedecin extends JFrame {
 
     private void valider() throws SaisieException {
         try {
-            String nom = textFieldNom.getText();
-            String prenom = textFieldPrenom.getText();
-            String adresse = textFieldAdresse.getText();
-            int codePostal = parseInt(textFieldCodePostal.getText());
-            String ville = textFieldVille.getText();
-            String telephone = textFieldTelephone.getText();
-            String email = textFieldEmail.getText();
-            String numAgre = textFieldNumAgre.getText();
+            // Récupération des champs du formulaire
+            String nom = textFieldNom.getText().trim();
+            String prenom = textFieldPrenom.getText().trim();
+            String adresse = textFieldAdresse.getText().trim();
+            String ville = textFieldVille.getText().trim();
+            String telephone = textFieldTelephone.getText().trim();
+            String email = textFieldEmail.getText().trim();
+            String numAgre = textFieldNumAgre.getText().trim();
+            String codePostalText = textFieldCodePostal.getText().trim();
 
+            // --------------- VALIDATION ----------------
+            if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() ||
+                    ville.isEmpty() || numAgre.isEmpty() || codePostalText.isEmpty()) {
+                throw new SaisieException("Tous les champs obligatoires doivent être remplis !");
+            }
+
+            if (!RegexUtility.numAgreementValide(numAgre)) {
+                throw new SaisieException("Numéro d'agrément invalide !");
+            }
+
+            int codePostal;
+            try {
+                codePostal = Integer.parseInt(codePostalText);
+            } catch (NumberFormatException e) {
+                throw new SaisieException("Code postal invalide ! Veuillez saisir un nombre.");
+            }
+
+            // Instanciation des DAO
+            MedecinDAO medecinDAO = new MedecinDAO();
+            LieuDAO lieuDAO = new LieuDAO();
+
+            // --------------- MODE UPDATE ----------------
             if (currentMedecin != null) {
-                // -------- MODE UPDATE --------
                 currentMedecin.setNom(nom);
                 currentMedecin.setPrenom(prenom);
                 currentMedecin.setNumeroAgreement(numAgre);
 
                 Lieu lieu = currentMedecin.getLieu();
                 lieu.setAdresse(adresse);
-                lieu.setCodePostal(codePostal);
                 lieu.setVille(ville);
+                lieu.setCodePostal(codePostal);
                 lieu.setTelephone(telephone);
                 lieu.setEmail(email);
+
+                // Mise à jour en base
+                lieuDAO.update(lieu);
+                medecinDAO.update(currentMedecin);
 
                 JOptionPane.showMessageDialog(this,
                         "Médecin mis à jour avec succès !",
                         "Succès",
                         JOptionPane.INFORMATION_MESSAGE);
+
             } else {
-                // -------- MODE CREATION --------
+                // --------------- MODE CREATION ----------------
+
+                // Tout est valide, on peut créer le lieu et le médecin
                 Lieu lieu = new Lieu(adresse, email, telephone, ville, codePostal);
-                Medecin medecin = new Medecin("Dr " + nom, prenom, numAgre, lieu);
-                medecin.setNumeroAgreement(numAgre);
-                Medecin.getMedecins().add(medecin);
+                lieuDAO.create(lieu); // Enregistre le lieu et récupère son ID
+
+                Medecin medecin = new Medecin(nom, prenom, numAgre, lieu);
+                medecinDAO.create(medecin); // Enregistre le médecin et récupère son ID
 
                 JOptionPane.showMessageDialog(this,
-                        "Nouveau médecin ajouté avec succès !",
+                        "Nouveau médecin ajouté avec succès !\nID: " + medecin.getId(),
                         "Succès",
                         JOptionPane.INFORMATION_MESSAGE);
             }
 
-            // Retour vers le consulterMédecin
+            // Retour à la fenêtre précédente
             if (previousFrame != null) {
                 previousFrame.setVisible(true);
             }
             this.dispose();
 
-        } catch (NullPointerException e) {
-            throw new SaisieException("Code postal ou numéro agreement invalide !");
+        } catch (SaisieException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erreur inattendue lors de l'enregistrement : " + e.getMessage(),
+                    "Erreur",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -192,9 +230,9 @@ public class registerMedecin extends JFrame {
     }
 
     {
-// GUI initializer generated by IntelliJ IDEA GUI Designer
-// >>> IMPORTANT!! <<<
-// DO NOT EDIT OR ADD ANY CODE HERE!
+    // GUI initializer generated by IntelliJ IDEA GUI Designer
+    // >>> IMPORTANT!! <<<
+    // DO NOT EDIT OR ADD ANY CODE HERE!
         $$$setupUI$$$();
     }
 

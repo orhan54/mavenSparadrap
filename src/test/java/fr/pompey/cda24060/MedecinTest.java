@@ -51,7 +51,7 @@ class MedecinTest {
         Exception exception = assertThrows(SaisieException.class, () -> {
             medecin.setNumeroAgreement("ABC!"); // numéro invalide
         });
-        assertTrue(exception.getMessage().contains("Error sur numéro agreement"));
+        assertTrue(exception.getMessage().contains("Erreur sur numéro d'agrément"));
     }
 
     @Test

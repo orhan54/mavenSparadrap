@@ -9,8 +9,8 @@ import static fr.pompey.cda24060.utility.RegexUtility.*;
 public class Lieu {
 
     // attributs
+    private int id, codePostal;
     private String adresse, email, telephone, ville;
-    private int codePostal;
 
     /**
      * Instantiates a new Lieu.
@@ -32,6 +32,24 @@ public class Lieu {
     }
 
     // Getters & Setters
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * Gets adresse.
      *
@@ -146,6 +164,7 @@ public class Lieu {
     @Override
     public String toString() {
         StringBuilder sbl = new StringBuilder();
+        sbl.append("- ID: ").append(this.id).append("\n");
         sbl.append("- Adresse: ").append(this.adresse).append("\n");
         sbl.append("- Email: ").append(this.email).append("\n");
         sbl.append("- Téléphone: ").append(this.telephone).append("\n");

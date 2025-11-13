@@ -32,7 +32,7 @@ public class Ordonnance {
      */
     public Ordonnance(String date, String pNomMedecin, String pNomPatient, List<Stock_Medicament> medicaments) throws SaisieException {
         this.setDate(date);
-//        this.dateOrdonnance = LocalDateTime.now();  // *** mise en commentaire pour tester les differentes dates de initialisation ***
+        //this.dateOrdonnance = LocalDateTime.now();  // *** mise en commentaire pour tester les differentes dates de initialisation ***
         this.setNomMedecin(pNomMedecin);
         this.setNomPatient(pNomPatient);
 

@@ -6,7 +6,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
 
 public class Pharmacie {
     // Attribut de la classe Pharmacie
-    private String nom;
+    private String nom, prenom;
 
     /**
      * Instantiates a new Pharmacie.
@@ -15,11 +15,35 @@ public class Pharmacie {
      * @throws SaisieException  the saisie exception
      */
     // Constructeur de la classe Pharmacie
-    public Pharmacie(String pNom) throws SaisieException {
+    public Pharmacie(String pNom, String pPrenom) throws SaisieException {
         this.setNom(pNom);
+        this.setPrenom(pPrenom);
     }
 
     // Setters et Getters de la classe Pharmacie
+
+    /**
+     * Gets prenom.
+     *
+     * @return the prenom
+     */
+    public String getPrenom() {
+        return prenom;
+    }
+
+    /**
+     * Sets prenom.
+     *
+     * @param pPrenom the p prenom
+     * @throws SaisieException the saisie exception
+     */
+    public void setPrenom(String pPrenom) throws SaisieException {
+        if(!regexAlpha(pPrenom) && pPrenom.isEmpty()){
+            throw new SaisieException("Error sur le nom de la pharmacie : " + pPrenom);
+        }else{
+            this.nom = pPrenom;
+        }
+    }
 
     /**
      * Gets nom.
