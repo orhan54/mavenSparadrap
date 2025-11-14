@@ -6,7 +6,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
 
 public class Pharmacie {
     // Attribut de la classe Pharmacie
-    private int id;
+    private int Id_Pharmacie;
     private String nom, prenom;
 
     /**
@@ -25,21 +25,21 @@ public class Pharmacie {
 
 
     /**
-     * Gets id.
+     * Gets id pharmacie.
      *
-     * @return the id
+     * @return the id pharmacie
      */
-    public int getId() {
-        return id;
+    public int getId_Pharmacie() {
+        return Id_Pharmacie;
     }
 
     /**
-     * Sets id.
+     * Sets id pharmacie.
      *
-     * @param id the id
+     * @param id_Pharmacie the id pharmacie
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId_Pharmacie(int id_Pharmacie) {
+        Id_Pharmacie = id_Pharmacie;
     }
 
     /**

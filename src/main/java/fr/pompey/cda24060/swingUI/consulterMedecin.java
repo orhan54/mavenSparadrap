@@ -336,7 +336,7 @@ public class consulterMedecin extends JFrame {
                 if (medecinToRemove != null) {
                     try {
                         // Supprimer de la BDD
-                        boolean deleted = medecinDAO.delete(medecinToRemove.getId());
+                        boolean deleted = medecinDAO.delete(medecinToRemove.getId_Medecin());
 
                         if (deleted) {
                             // Supprimer de la liste statique

@@ -20,7 +20,7 @@ public class Commande {
     private TypeAchat typeAchat;
     private String nomMedecin, nomPatient;
     private List<Stock_Medicament> medicaments;
-    private int id, quantite;
+    private int Id_Commande, quantite;
     private double prix;
     private Mutuelle mutuelle;
     private boolean priseEnChargeMutuelle;
@@ -176,21 +176,21 @@ public class Commande {
 
 
     /**
-     * Gets id.
+     * Gets id commande.
      *
-     * @return the id
+     * @return the id commande
      */
-    public int getId() {
-        return id;
+    public int getId_Commande() {
+        return Id_Commande;
     }
 
     /**
-     * Sets id.
+     * Sets id commande.
      *
-     * @param id the id
+     * @param id_Commande the id commande
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId_Commande(int id_Commande) {
+        Id_Commande = id_Commande;
     }
 
     /**

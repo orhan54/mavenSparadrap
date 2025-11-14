@@ -13,7 +13,7 @@ public class Mutuelle {
     // Attribut de la classe Mutuelle
     private String nom;
     private double tauxPriseEnCharge;
-    private int id ,departement;
+    private int Id_Mutuelle ,departement;
     private Lieu lieu;
 
     // List des mutuelles
@@ -37,6 +37,25 @@ public class Mutuelle {
     }
 
     // Getters et Setters
+
+
+    /**
+     * Gets id mutuelle.
+     *
+     * @return the id mutuelle
+     */
+    public int getId_Mutuelle() {
+        return Id_Mutuelle;
+    }
+
+    /**
+     * Sets id mutuelle.
+     *
+     * @param id_Mutuelle the id mutuelle
+     */
+    public void setId_Mutuelle(int id_Mutuelle) {
+        Id_Mutuelle = id_Mutuelle;
+    }
 
     /**
      * Gets mutuelles.

@@ -38,7 +38,7 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
                 stmt.setString(1, medecin.getNom());
                 stmt.setString(2, medecin.getPrenom());
                 stmt.setString(3, medecin.getNumeroAgreement());
-                stmt.setInt(4, lieu.getId());
+                stmt.setInt(4, lieu.getId_Lieu());
 
                 int affectedRows = stmt.executeUpdate();
                 if (affectedRows == 0) {
@@ -47,7 +47,7 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
 
                 try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        medecin.setId(generatedKeys.getInt(1));
+                        medecin.setId_Medecin(generatedKeys.getInt(1));
                     } else {
                         throw new SQLException("Échec de la création du médecin, aucun ID généré.");
                     }
@@ -126,8 +126,8 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
                 stmt.setString(1, medecin.getNom());
                 stmt.setString(2, medecin.getPrenom());
                 stmt.setString(3, medecin.getNumeroAgreement());
-                stmt.setInt(4, medecin.getLieu().getId());
-                stmt.setInt(5, medecin.getId());
+                stmt.setInt(4, medecin.getLieu().getId_Lieu());
+                stmt.setInt(5, medecin.getId_Medecin());
 
                 int affectedRows = stmt.executeUpdate();
                 return affectedRows > 0;
@@ -147,7 +147,7 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
         if (medecin == null) {
             return false;
         }
-        int idLieu = medecin.getLieu().getId();
+        int idLieu = medecin.getLieu().getId_Lieu();
 
         // Supprimer le médecin
         String sqlMed = "DELETE FROM Medecin WHERE Id_Medecin = ?";
@@ -178,7 +178,7 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
                 rs.getString("lieu_ville"),
                 rs.getInt("lieu_cp")
         );
-        lieu.setId(rs.getInt("Id_Lieu"));
+        lieu.setId_Lieu(rs.getInt("Id_Lieu"));
 
         Medecin medecin = new Medecin(
                 rs.getString("med_nom"),
@@ -186,7 +186,7 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
                 rs.getString("med_numero_agreement"),
                 lieu
         );
-        medecin.setId(rs.getInt("Id_Medecin"));
+        medecin.setId_Medecin(rs.getInt("Id_Medecin"));
         return medecin;
     }
 

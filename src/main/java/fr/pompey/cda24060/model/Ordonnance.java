@@ -15,7 +15,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
  */
 public class Ordonnance {
     // Attributs pour la classe Ordonnance
-    private int id;
+    private int Id_Ordonnance;
     private LocalDateTime dateOrdonnance;
     private String date, nomMedecin, nomPatient;
 
@@ -68,22 +68,23 @@ public class Ordonnance {
 
     // Getters et Setters
 
+
     /**
-     * Gets id.
+     * Gets id ordonnance.
      *
-     * @return the id
+     * @return the id ordonnance
      */
-    public int getId() {
-        return id;
+    public int getId_Ordonnance() {
+        return Id_Ordonnance;
     }
 
     /**
-     * Sets id.
+     * Sets id ordonnance.
      *
-     * @param id the id
+     * @param id_Ordonnance the id ordonnance
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId_Ordonnance(int id_Ordonnance) {
+        Id_Ordonnance = id_Ordonnance;
     }
 
     /**

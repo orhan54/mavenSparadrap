@@ -34,3 +34,4 @@ java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'martinpaul@g
 	at fr.pompey.cda24060.swingUI.MainSwingUI.initialisation(MainSwingUI.java:64)
 	at fr.pompey.cda24060.swingUI.MainSwingUI.main(MainSwingUI.java:29)
 2025-11-14 15:12:15 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.
+2025-11-14 15:47:42 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.

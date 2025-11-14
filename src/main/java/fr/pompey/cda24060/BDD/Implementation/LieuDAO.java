@@ -42,7 +42,7 @@ public class LieuDAO implements InterfaceDAO<Lieu> {
             // Récupérer l'ID généré
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    lieu.setId(generatedKeys.getInt(1));
+                    lieu.setId_Lieu(generatedKeys.getInt(1));
                 } else {
                     throw new SQLException("Échec de la création du lieu, aucun ID généré.");
                 }
@@ -108,7 +108,7 @@ public class LieuDAO implements InterfaceDAO<Lieu> {
             stmt.setString(3, lieu.getTelephone());
             stmt.setString(4, lieu.getVille());
             stmt.setInt(5, lieu.getCodePostal());
-            stmt.setInt(6, lieu.getId());
+            stmt.setInt(6, lieu.getId_Lieu());
 
             int affectedRows = stmt.executeUpdate();
             return affectedRows > 0;
@@ -140,7 +140,7 @@ public class LieuDAO implements InterfaceDAO<Lieu> {
                 rs.getString("lieu_ville"),
                 rs.getInt("lieu_cp")
         );
-        lieu.setId(rs.getInt("Id_Lieu"));
+        lieu.setId_Lieu(rs.getInt("Id_Lieu"));
         return lieu;
     }
 }

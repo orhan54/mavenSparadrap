@@ -9,7 +9,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.numAgreementValide;
 
 public class Medecin extends Personne {
 
-    private int id;
+    private int Id_Medecin;
     private String numeroAgreement;
     private static List<Medecin> medecins = new ArrayList<>();
     private List<Patient> patients = new ArrayList<>();
@@ -26,24 +26,24 @@ public class Medecin extends Personne {
 
     // Getter & Setter
 
+
     /**
-     * Gets id.
+     * Gets id medecin.
      *
-     * @return the id
+     * @return the id medecin
      */
-    public int getId() {
-        return id;
+    public int getId_Medecin() {
+        return Id_Medecin;
     }
 
     /**
-     * Sets id.
+     * Sets id medecin.
      *
-     * @param id the id
+     * @param id_Medecin the id medecin
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId_Medecin(int id_Medecin) {
+        Id_Medecin = id_Medecin;
     }
-
 
     /**
      * Gets numero agreement.
@@ -98,7 +98,7 @@ public class Medecin extends Personne {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Médecin :\n");
-        sb.append("- ID : ").append(id).append("\n");
+        sb.append("- ID : ").append(Id_Medecin).append("\n");
         sb.append("- Nom : ").append(getNom()).append("\n");
         sb.append("- Prénom : ").append(getPrenom()).append("\n");
         sb.append("- Numéro d'agrément : ").append(numeroAgreement).append("\n");

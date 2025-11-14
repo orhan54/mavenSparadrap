@@ -10,7 +10,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.*;
 
 public class Stock_Medicament {
     // Attibut pour la classe Medicament
-    private int id, quantite;
+    private int Id_Stock_Medicament, quantite;
     private String dateMiseEnService, nom, categorie, dateEntreeStock;
     private double prix;
 
@@ -42,21 +42,21 @@ public class Stock_Medicament {
 
 
     /**
-     * Gets id.
+     * Gets id stock medicament.
      *
-     * @return the id
+     * @return the id stock medicament
      */
-    public int getId() {
-        return id;
+    public int getId_Stock_Medicament() {
+        return Id_Stock_Medicament;
     }
 
     /**
-     * Sets id.
+     * Sets id stock medicament.
      *
-     * @param id the id
+     * @param id_Stock_Medicament the id stock medicament
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId_Stock_Medicament(int id_Stock_Medicament) {
+        Id_Stock_Medicament = id_Stock_Medicament;
     }
 
     /**
