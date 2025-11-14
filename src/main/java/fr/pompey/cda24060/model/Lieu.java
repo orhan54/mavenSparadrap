@@ -32,6 +32,7 @@ public class Lieu {
     }
 
     // Getters & Setters
+
     /**
      * Gets id.
      *

@@ -2,13 +2,11 @@ package fr.pompey.cda24060.swingUI;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import fr.pompey.cda24060.BDD.implementation.LieuDAO;
 import fr.pompey.cda24060.BDD.implementation.MedecinDAO;
 import fr.pompey.cda24060.exception.SaisieException;
 import fr.pompey.cda24060.model.Lieu;
 import fr.pompey.cda24060.model.Medecin;
 import fr.pompey.cda24060.utility.RegexUtility;
-
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
@@ -18,7 +16,6 @@ import java.awt.event.WindowEvent;
 import java.util.Locale;
 import java.util.Objects;
 
-import static java.lang.Integer.parseInt;
 
 public class registerMedecin extends JFrame {
     private JPanel contentPane;
@@ -144,7 +141,8 @@ public class registerMedecin extends JFrame {
 
             // --------------- VALIDATION ----------------
             if (nom.isEmpty() || prenom.isEmpty() || adresse.isEmpty() ||
-                    ville.isEmpty() || numAgre.isEmpty() || codePostalText.isEmpty()) {
+                    ville.isEmpty() || telephone.isEmpty() || email.isEmpty() ||
+                    numAgre.isEmpty() || codePostalText.isEmpty()) {
                 throw new SaisieException("Tous les champs obligatoires doivent être remplis !");
             }
 
@@ -159,9 +157,8 @@ public class registerMedecin extends JFrame {
                 throw new SaisieException("Code postal invalide ! Veuillez saisir un nombre.");
             }
 
-            // Instanciation des DAO
+            // Instanciation du DAO
             MedecinDAO medecinDAO = new MedecinDAO();
-            LieuDAO lieuDAO = new LieuDAO();
 
             // --------------- MODE UPDATE ----------------
             if (currentMedecin != null) {
@@ -176,8 +173,7 @@ public class registerMedecin extends JFrame {
                 lieu.setTelephone(telephone);
                 lieu.setEmail(email);
 
-                // Mise à jour en base
-                lieuDAO.update(lieu);
+                // Mise à jour via DAO (qui gère aussi le Lieu)
                 medecinDAO.update(currentMedecin);
 
                 JOptionPane.showMessageDialog(this,
@@ -187,16 +183,14 @@ public class registerMedecin extends JFrame {
 
             } else {
                 // --------------- MODE CREATION ----------------
-
-                // Tout est valide, on peut créer le lieu et le médecin
                 Lieu lieu = new Lieu(adresse, email, telephone, ville, codePostal);
-                lieuDAO.create(lieu); // Enregistre le lieu et récupère son ID
-
                 Medecin medecin = new Medecin(nom, prenom, numAgre, lieu);
-                medecinDAO.create(medecin); // Enregistre le médecin et récupère son ID
+
+                // Création via DAO (qui gère aussi le Lieu)
+                medecinDAO.create(medecin);
 
                 JOptionPane.showMessageDialog(this,
-                        "Nouveau médecin ajouté avec succès !\nID: " + medecin.getId(),
+                        "Nouveau médecin ajouté avec succès !",
                         "Succès",
                         JOptionPane.INFORMATION_MESSAGE);
             }

@@ -10,8 +10,12 @@ import java.util.List;
 import static fr.pompey.cda24060.utility.RegexUtility.dateValide;
 import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
 
+/**
+ * The type Ordonnance.
+ */
 public class Ordonnance {
     // Attributs pour la classe Ordonnance
+    private int id;
     private LocalDateTime dateOrdonnance;
     private String date, nomMedecin, nomPatient;
 
@@ -63,6 +67,24 @@ public class Ordonnance {
     }
 
     // Getters et Setters
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets date ordonnance.

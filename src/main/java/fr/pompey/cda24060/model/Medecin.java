@@ -24,20 +24,42 @@ public class Medecin extends Personne {
         this.setNumeroAgreement(pNumeroAgreement);
     }
 
-    // Getter & Setter pour l'ID
+    // Getter & Setter
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
-    // Getter & Setter pour numeroAgreement
+
+    /**
+     * Gets numero agreement.
+     *
+     * @return the numero agreement
+     */
     public String getNumeroAgreement() {
         return numeroAgreement;
     }
 
+    /**
+     * Sets numero agreement.
+     *
+     * @param pNumeroAgreement the p numero agreement
+     * @throws SaisieException the saisie exception
+     */
     public void setNumeroAgreement(String pNumeroAgreement) throws SaisieException {
         if (pNumeroAgreement == null || !numAgreementValide(pNumeroAgreement)) {
             throw new SaisieException("Erreur sur numéro d'agrément : " + pNumeroAgreement);
@@ -45,14 +67,29 @@ public class Medecin extends Personne {
         this.numeroAgreement = pNumeroAgreement;
     }
 
+    /**
+     * Gets medecins.
+     *
+     * @return the medecins
+     */
     public static List<Medecin> getMedecins() {
         return medecins;
     }
 
+    /**
+     * Gets patients.
+     *
+     * @return the patients
+     */
     public List<Patient> getPatients() {
         return patients;
     }
 
+    /**
+     * Sets patients.
+     *
+     * @param patients the patients
+     */
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }

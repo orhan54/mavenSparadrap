@@ -6,16 +6,41 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MainSwingUI {
-    public static void main(String[] args) throws Exception {
+    // Logger SLF4J
+    private static final Logger logger = LoggerFactory.getLogger(MainSwingUI.class);
+
+    public static void main(String[] args) {
+
+        // Gestionnaire global pour toutes les exceptions non gérées
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            logger.error("Exception non gérée dans le thread {} : {}", thread.getName(), throwable.getMessage(), throwable);
+        });
+
         try {
+            // Configuration LookAndFeel
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
+
+            // Appel à l'initialisation
             initialisation();
-            Menu myMenu = new Menu();
-            myMenu.setVisible(true);
-        }catch (Exception e) {
-            System.out.println("Error au lancement de la vue Swing " + e.getMessage());
+
+            // Création et affichage du menu Swing dans l'EDT
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    Menu myMenu = new Menu();
+                    myMenu.setVisible(true);
+                    logger.info("L'application Swing Sparadrap a démarré avec succès.");
+                } catch (Exception e) {
+                    logger.error("Erreur lors de l'affichage de la vue Swing : {}", e.getMessage(), e);
+                }
+            });
+
+        } catch (Exception e) {
+            // Log des exceptions lors de l'initialisation
+            logger.error("Erreur au démarrage de l'application : {}", e.getMessage(), e);
         }
     }
 

@@ -6,6 +6,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
 
 public class Pharmacie {
     // Attribut de la classe Pharmacie
+    private int id;
     private String nom, prenom;
 
     /**
@@ -21,6 +22,25 @@ public class Pharmacie {
     }
 
     // Setters et Getters de la classe Pharmacie
+
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Gets prenom.
@@ -72,7 +92,8 @@ public class Pharmacie {
     @Override
     public String toString() {
         StringBuilder sbo = new StringBuilder();
-        sbo.append("Le nom de la pharmacie est ").append(this.nom).append("\n");
+        sbo.append("Le prenom du pharmacien est ").append(this.nom).append("\n");
+        sbo.append("Le nom du pharmacien est ").append(this.nom).append("\n");
 
         return sbo.toString();
     }

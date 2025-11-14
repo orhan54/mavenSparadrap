@@ -13,7 +13,7 @@ public class Mutuelle {
     // Attribut de la classe Mutuelle
     private String nom;
     private double tauxPriseEnCharge;
-    private int departement;
+    private int id ,departement;
     private Lieu lieu;
 
     // List des mutuelles

@@ -9,7 +9,7 @@ import static fr.pompey.cda24060.utility.RegexUtility.regexAlpha;
  */
 public class Personne {
     private String nom, prenom;
-    private Lieu lieu; // composition : une personne a un lieu
+    private Lieu lieu;
     private Mutuelle mutuelle;
     private Medecin medecin;
 

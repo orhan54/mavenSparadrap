@@ -27,31 +27,36 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
     public Medecin create(Medecin medecin) throws SQLException {
         String sql = "INSERT INTO Medecin (med_nom, med_prenom, med_numero_agreement, Id_Lieu) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            stmt.setString(1, medecin.getNom());
-            stmt.setString(2, medecin.getPrenom());
-            stmt.setString(3, medecin.getNumeroAgreement());
+        try {
+            // Créer d'abord le lieu
+            LieuDAO lieuDAO = new LieuDAO();
+            Lieu lieu = lieuDAO.create(medecin.getLieu());
+            medecin.setLieu(lieu);
 
-            if (medecin.getLieu() != null && medecin.getLieu().getId() > 0) {
-                stmt.setInt(4, medecin.getLieu().getId());
-            } else {
-                throw new SQLException("Le lieu du médecin doit être créé avant le médecin");
-            }
+            // Ensuite créer le médecin
+            try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setString(1, medecin.getNom());
+                stmt.setString(2, medecin.getPrenom());
+                stmt.setString(3, medecin.getNumeroAgreement());
+                stmt.setInt(4, lieu.getId());
 
-            int affectedRows = stmt.executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Échec de la création du médecin, aucune ligne affectée.");
-            }
-
-            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    medecin.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Échec de la création du médecin, aucun ID généré.");
+                int affectedRows = stmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Échec de la création du médecin, aucune ligne affectée.");
                 }
-            }
 
-            return medecin;
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        medecin.setId(generatedKeys.getInt(1));
+                    } else {
+                        throw new SQLException("Échec de la création du médecin, aucun ID généré.");
+                    }
+                }
+
+                return medecin;
+            }
+        } catch (ClassNotFoundException | java.io.IOException e) {
+            throw new SQLException("Erreur lors de l'initialisation de LieuDAO : " + e.getMessage());
         }
     }
 
@@ -111,15 +116,24 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
     public boolean update(Medecin medecin) throws SQLException {
         String sql = "UPDATE Medecin SET med_nom = ?, med_prenom = ?, med_numero_agreement = ?, Id_Lieu = ? WHERE Id_Medecin = ?";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, medecin.getNom());
-            stmt.setString(2, medecin.getPrenom());
-            stmt.setString(3, medecin.getNumeroAgreement());
-            stmt.setInt(4, medecin.getLieu().getId());
-            stmt.setInt(5, medecin.getId());
+        try {
+            // Mettre à jour d'abord le lieu
+            LieuDAO lieuDAO = new LieuDAO();
+            lieuDAO.update(medecin.getLieu());
 
-            int affectedRows = stmt.executeUpdate();
-            return affectedRows > 0;
+            // Ensuite mettre à jour le médecin
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, medecin.getNom());
+                stmt.setString(2, medecin.getPrenom());
+                stmt.setString(3, medecin.getNumeroAgreement());
+                stmt.setInt(4, medecin.getLieu().getId());
+                stmt.setInt(5, medecin.getId());
+
+                int affectedRows = stmt.executeUpdate();
+                return affectedRows > 0;
+            }
+        } catch (ClassNotFoundException | java.io.IOException e) {
+            throw new SQLException("Erreur lors de l'initialisation de LieuDAO : " + e.getMessage());
         }
     }
 
@@ -128,13 +142,29 @@ public class MedecinDAO implements InterfaceDAO<Medecin> {
      */
     @Override
     public boolean delete(int id) throws SQLException {
-        String sql = "DELETE FROM Medecin WHERE Id_Medecin = ?";
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            int affectedRows = stmt.executeUpdate();
-            return affectedRows > 0;
+        // Récupérer le médecin pour obtenir l'ID du lieu
+        Medecin medecin = getById(id);
+        if (medecin == null) {
+            return false;
         }
+        int idLieu = medecin.getLieu().getId();
+
+        // Supprimer le médecin
+        String sqlMed = "DELETE FROM Medecin WHERE Id_Medecin = ?";
+        try (PreparedStatement stmtMed = connection.prepareStatement(sqlMed)) {
+            stmtMed.setInt(1, id);
+            int affectedRows = stmtMed.executeUpdate();
+            if (affectedRows == 0) return false;
+        }
+
+        // Supprimer le lieu
+        String sqlLieu = "DELETE FROM Lieu WHERE Id_Lieu = ?";
+        try (PreparedStatement stmtLieu = connection.prepareStatement(sqlLieu)) {
+            stmtLieu.setInt(1, idLieu);
+            stmtLieu.executeUpdate();
+        }
+
+        return true;
     }
 
     /**

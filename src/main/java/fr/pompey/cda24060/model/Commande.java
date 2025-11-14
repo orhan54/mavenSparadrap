@@ -20,7 +20,7 @@ public class Commande {
     private TypeAchat typeAchat;
     private String nomMedecin, nomPatient;
     private List<Stock_Medicament> medicaments;
-    private int quantite;
+    private int id, quantite;
     private double prix;
     private Mutuelle mutuelle;
     private boolean priseEnChargeMutuelle;
@@ -41,7 +41,7 @@ public class Commande {
      * @param priseEnChargeMutuelle the prise en charge mutuelle
      * @throws SaisieException the saisie exception
      */
-// Constructeur avec liste de médicaments et mutuelle
+    // Constructeur avec liste de médicaments et mutuelle
     public Commande(Date pDateCommande,
                     TypeAchat pTypeAchat,
                     String nomMedecin,
@@ -79,7 +79,7 @@ public class Commande {
      * @param priseEnChargeMutuelle the prise en charge mutuelle
      * @throws SaisieException the saisie exception
      */
-// Constructeur avec un seul médicament et mutuelle
+    // Constructeur avec un seul médicament et mutuelle
     public Commande(Date pDateCommande,
                     TypeAchat pTypeAchat,
                     String nomMedecin,
@@ -161,7 +161,7 @@ public class Commande {
      * @param priseEnChargeMutuelle the prise en charge mutuelle
      * @throws SaisieException the saisie exception
      */
-// Constructeurs compatibilité avec boolean seulement
+    // Constructeurs compatibilité avec boolean seulement
     public Commande(Date pDateCommande,
                     TypeAchat pTypeAchat,
                     String nomMedecin,
@@ -171,6 +171,26 @@ public class Commande {
                     double prix,
                     boolean priseEnChargeMutuelle) throws SaisieException {
         this(pDateCommande, pTypeAchat, nomMedecin, nomPatient, medicaments, quantite, prix, null, priseEnChargeMutuelle);
+    }
+    // Getters & Setters
+
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**

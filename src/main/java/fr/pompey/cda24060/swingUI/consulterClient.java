@@ -142,7 +142,6 @@ public class consulterClient extends JFrame {
                         }
                     }
                 }
-                //System.out.println(selectedValue);
             }
         });
     }
@@ -200,7 +199,7 @@ public class consulterClient extends JFrame {
 
                 // Réinitialiser la sélection
                 selectedValue = null;
-                comboBoxClient.setSelectedIndex(0); // revient sur "Choisir un client"
+                comboBoxClient.setSelectedIndex(0);
             }
         }
     }

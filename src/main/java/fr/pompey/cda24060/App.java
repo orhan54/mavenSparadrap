@@ -100,7 +100,6 @@ public class App {
             ordoM3c.add(medic5);
             Ordonnance ordoM3_3 = new Ordonnance("18/08/2025", "Dr Dubois Anne", "Lucas Bernard", ordoM3c);
 
-
             // Dr Morel (3 ordonnances)
             List<Stock_Medicament> ordoM4a = new ArrayList<>();
             ordoM4a.add(medic2);
@@ -116,7 +115,6 @@ public class App {
             ordoM4c.add(medic5);
             ordoM4c.add(medic6);
             Ordonnance ordoM4_3 = new Ordonnance("15/08/2025", "Dr Morel Hélène", "Claire Martin", ordoM4c);
-
 
             // Dr Lefevre (3 ordonnances)
             List<Stock_Medicament> ordoM5a = new ArrayList<>();

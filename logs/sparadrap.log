@@ -1,0 +1,36 @@
+2025-11-14 08:52:07 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.
+2025-11-14 10:20:27 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.
+2025-11-14 15:09:37 [main] INFO  f.p.cda24060.swingUI.MainSwingUI - Médecin créé en base : ID=7, Nom=Martin Paul
+2025-11-14 15:09:37 [main] INFO  f.p.cda24060.swingUI.MainSwingUI - Médecin créé en base : ID=8, Nom=Robert François
+2025-11-14 15:09:37 [main] INFO  f.p.cda24060.swingUI.MainSwingUI - Médecin créé en base : ID=9, Nom=Dubois Anne
+2025-11-14 15:09:37 [main] INFO  f.p.cda24060.swingUI.MainSwingUI - Médecin créé en base : ID=10, Nom=Morel Hélène
+2025-11-14 15:09:37 [main] INFO  f.p.cda24060.swingUI.MainSwingUI - Médecin créé en base : ID=11, Nom=Lefevre Julien
+2025-11-14 15:09:37 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.
+2025-11-14 15:11:09 [main] ERROR f.p.cda24060.swingUI.MainSwingUI - Erreur lors de l'initialisation
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'martinpaul@gmail.com' for key 'lieu.lieu_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at fr.pompey.cda24060.BDD.implementation.LieuDAO.create(LieuDAO.java:36)
+	at fr.pompey.cda24060.BDD.implementation.MedecinDAO.create(MedecinDAO.java:33)
+	at fr.pompey.cda24060.swingUI.MainSwingUI.initialisation(MainSwingUI.java:64)
+	at fr.pompey.cda24060.swingUI.MainSwingUI.main(MainSwingUI.java:29)
+2025-11-14 15:11:10 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.
+2025-11-14 15:12:15 [main] ERROR f.p.cda24060.swingUI.MainSwingUI - Erreur lors de l'initialisation
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'martinpaul@gmail.com' for key 'lieu.lieu_email'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1448)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at fr.pompey.cda24060.BDD.implementation.LieuDAO.create(LieuDAO.java:36)
+	at fr.pompey.cda24060.BDD.implementation.MedecinDAO.create(MedecinDAO.java:33)
+	at fr.pompey.cda24060.swingUI.MainSwingUI.initialisation(MainSwingUI.java:64)
+	at fr.pompey.cda24060.swingUI.MainSwingUI.main(MainSwingUI.java:29)
+2025-11-14 15:12:15 [AWT-EventQueue-0] INFO  f.p.cda24060.swingUI.MainSwingUI - L'application Swing Sparadrap a démarré avec succès.
